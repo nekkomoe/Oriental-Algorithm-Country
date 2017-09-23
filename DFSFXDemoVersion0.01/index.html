@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>東方算法鄉</title>
+        <script src="js/requestNextAnimationFrame.js"></script>     <!-- 渲染 -->
+        <script src="js/prepare.js"></script>                       <!-- 定义-->
+        <script src="js/resource.js"></script>                      <!-- 资源 -->
+        <script src="js/mainpanel.js"></script>                     <!-- 界面 -->
+        <script src="js/scene.js"></script>                         <!-- 模式 -->
+        <script src="js/player.js"></script>                        <!-- 自机 -->
+        <script src="js/enemy.js"></script>                         <!-- 敌机 -->
+        <script src="js/bullet.js"></script>                        <!-- 子弹 -->
+        <script src="js/boom.js"></script>                          <!-- 摧毁 -->
+        <script src="js/food.js"></script>                          <!-- 食物 -->
+        <script src="js/laser.js"></script>                         <!-- 激光 -->
+        <script src="js/task.js"></script>                          <!-- 任务 -->
+
+
+        <script src="js/mod/demo.js"></script>                      <!-- 关卡 -->
+
+
+    </head>
+
+    <body>
+        <canvas id="canvas" style="position:fixed;top:0;left:0;"></canvas>
+        <script>
+            window.onload=function(){
+                window.canvas = document.getElementById("canvas");
+                window.context = canvas.getContext("2d");
+                context.setAlpha=context.setAlpha||function(a){context.globalAlpha=a;};
+                canvas.setAttribute("width",WINDOW_WIDTH);
+                canvas.setAttribute("height",WINDOW_HEIGHT);
+                
+                window._resource=new resource();
+                _resource.init();
+                window._mainpanel=new mainpanel();
+                window._scene=new scene();
+                window._player=new player();
+                
+                for(var i=0;i<MAX_ENEMY_TOTAL;i++)_enemy[i]=new enemy();
+                for(var i=0;i<MAX_BULLET_TOTAL;i++)_bullet[i]=new bullet();
+                for(var i=0;i<MAX_BOOM_TOTAL;i++)_boom[i]=new boom();
+                for(var i=0;i<MAX_FOOD_TOTAL;i++)_food[i]=new food();
+                for(var i=0;i<MAX_LASER_TOTAL;i++)_laser[i]=new laser();
+                for(var i=0;i<MAX_TASK_TOTAL;i++)_task[i]=new task();
+
+                window.stage_handle=sfx_demo;
+                var handle=setInterval(function(){
+                    if(alreadyLoadCounts == _resource.src.length){
+                        clearInterval(handle);
+                        _mainpanel.init();
+                    }
+                },100);
+            }
+        </script>
+    </body>
+</html>

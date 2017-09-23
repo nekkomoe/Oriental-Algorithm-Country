@@ -1,0 +1,93 @@
+// function addLineBullet(sprite, velocity) {
+//     //精灵 x坐标 y坐标 x速度 y速度 是否往左 是否往上 旋转角度（向下是0°）
+//     addbullet(sprite, sprite.x + 16, sprite.y + 25, 0, velocity, false, false, 0);//下
+// }
+// function addThreeBullet(sprite, velocity) {
+//     //精灵 x坐标 y坐标 x速度 y速度 是否往左 是否往上 旋转角度（向下是0°）
+//     addbullet(sprite, sprite.x + 16, sprite.y + 25, 0, velocity, false, false, 0);//下
+//     addbullet(sprite, sprite.x + 16, sprite.y + 25, velocity * Math.tan(10 / 180 * Math.PI), velocity, false, false, -10);//右下
+//     addbullet(sprite, sprite.x + 16, sprite.y + 25, velocity * Math.tan(10 / 180 * Math.PI), velocity, true, false, 10);//左下
+// }
+// function addFinalBullet(sprite, velocity) {
+//     //精灵 x坐标 y坐标 x速度 y速度 是否往左 是否往上 旋转角度（向下是0°）
+//     for (var i = 0; i < 360; i += 10) {
+//         var rot = i + Math.random() * 360;
+//         var vx = velocity * Math.sin(rot / 180 * Math.PI);
+//         var vy = velocity * Math.cos(rot / 180 * Math.PI);
+//         var isL = false;
+//         var isU = false;
+//         if (vx < 0) {
+//             vx *= -1;
+//             isL = true;
+//         } else {
+//             isL = false;
+//         }
+//         if (vy < 0) {
+//             vy *= -1;
+//             isU = true;
+//         } else {
+//             isU = false;
+//         }
+//         addbullet(sprite, sprite.x + 32, sprite.y + 32, vx, vy, isL, isU, -rot);
+//     }
+// }
+
+// function addSnipeBullet(sprite, velocity) {     //狙击弹
+//     var curX=sprite.x;
+//     var curY=sprite.y;
+//     var tarX=player.x;
+//     var tarY=player.y;
+//     var angle=Math.atan2(tarY-curY,tarX-curX);
+//     for(var i=1;i<=5;i++){
+//         setTimeout(function(){
+//             var SHOOT_TIMES=25.0;
+//             var _angle=360/SHOOT_TIMES;
+//             for(var j=1;j<=SHOOT_TIMES;j++){
+//                 var ang=angle+_angle*(j-1)*Math.PI/180;
+//                 addbullet(sprite, curX+15, curY+24, velocity*Math.cos(ang), velocity*Math.sin(ang), false, false, ang*180/Math.PI-90);
+//             }
+//         },200*i);
+//     }
+// }
+
+// function addLotusBullet(sprite, velocity, total) {     //莲花弹
+//     total=total || 6;
+//     if(sprite.lotusInitAngle===undefined || sprite.lotusInitAngle>=720){sprite.lotusInitAngle=0;}
+//     var curX=sprite.x;
+//     var curY=sprite.y;
+//     var angle=sprite.lotusInitAngle;
+//     var _angle=360/total;
+//     for(var j=1;j<=total;j++){
+//         var ang=angle+_angle*(j-1)*Math.PI/180;
+//         addbullet(sprite, curX+15, curY+24, velocity*Math.cos(ang), velocity*Math.sin(ang), false, false, ang*180/Math.PI-90);
+//     }
+//     sprite.lotusInitAngle++;
+// }
+
+// function addCircleBullet(sprite, velocity, total, angle, turnDelta, curX, curY) {     //圈形弹
+//     //angle是弧度值，turnDelta是角度值
+//     total=total || 6;
+//     angle=angle || 0;
+//     turnDelta=turnDelta || 0;
+//     curX=curX || sprite.x;
+//     curY=curY || sprite.y;
+//     var _angle=360/total;
+//     for(var j=1;j<=total;j++){
+//         var ang=_angle*(j-1)*Math.PI/180+angle;
+//         addbullet(sprite, curX+15, curY+24, velocity*Math.cos(ang), velocity*Math.sin(ang), false, false, ang*180/Math.PI-90+turnDelta);
+//     }
+// }
+
+// function addDoorBullet(sprite, velocity, total, pos) {     //门弹
+//     pos=pos || 0;   //门的位置（弧度）
+//     total=total || 6;
+//     var curX=sprite.x;
+//     var curY=sprite.y;
+//     var _angle=360/total;
+//     for(var j=1;j<=total;j++){
+//         var ang=_angle*(j-1)*Math.PI/180;
+//         if(abs(ang-pos)*180/Math.PI>10)
+//             addbullet(sprite, curX+15, curY+24, velocity*Math.cos(ang), velocity*Math.sin(ang), false, false, ang*180/Math.PI-90);
+//     }
+//     sprite.lotusInitAngle+=5;
+// }
